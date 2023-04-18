@@ -12,15 +12,15 @@
 // logger();
 // logger();
 
-function fruitJuice(apples, oranges) {
-    console.log(apples, oranges);
-    const juice = `Juice is of ${apples} apples and ${oranges} oranges.`
-    return juice;
-}
+// function fruitJuice(apples, oranges) {
+//     console.log(apples, oranges);
+//     const juice = `Juice is of ${apples} apples and ${oranges} oranges.`
+//     return juice;
+// }
 
 // fruitJuice(5,0);
-const appleJuice =  fruitJuice(5,0);
-console.log(appleJuice);
+// const appleJuice =  fruitJuice(5,0);
+// console.log(appleJuice);
 // In order for us to get the return value..what we do is..store the return value in a variable
 // But also not the u can print the return value using the console.log();..
 // But remember..Its just better to store the return value and then use it..
@@ -30,24 +30,24 @@ console.log(appleJuice);
 
 // Function Declaration - 
 
-const age1 = calAge1(1998);
+// const age1 = calAge1(1998);
 
-console.log('age1', age1);
+// console.log('age1', age1);
 
 
-function calAge1(birthYear) {
-    return 2047 - birthYear;
-}
+// function calAge1(birthYear) {
+//     return 2047 - birthYear;
+// }
 
 
 // Function Expression - Here we use a variable to declare a function..and rember..this function is nameless here..hence its called an anonymous funciton..
 
-const calAge2 = function(birthYear) {
-    return 2047 - birthYear;
-}
+// const calAge2 = function(birthYear) {
+//     return 2047 - birthYear;
+// }
 
-const age2 = calAge2(1998);
-console.log('age2', age2);
+// const age2 = calAge2(1998);
+// console.log('age2', age2);
 
 // So rember..funciton is a value hence we can sttore it in a variable
 
@@ -57,12 +57,32 @@ console.log('age2', age2);
 
 // Arrow Functions - 
 
-const calcAge3 = birthYear => 2047 - birthYear;
+// const calcAge3 = birthYear => 2047 - birthYear;
 
-const age3 = calcAge3(1998);
-console.log(age3);
+// const age3 = calcAge3(1998);
+// console.log(age3);
 
 // This arrow function is best for one paramter and when we just have one line of code to write inside a funciton..
 // Remeber..Arrow function don't get this keyword..
 
 
+// Functions calling in a function:
+
+// We will create a new function..which will generate cut fruit pieces and then those cut fruit prieces will be used in the fruitJuice funciton
+
+const cutFruitPieces = function(fruit) {
+    return fruit * 4
+}
+
+function fruitJuice(apples, oranges) { // apple = 2, oranges = 3
+    const applePieces = cutFruitPieces(apples); // 8
+    const orangePieces = cutFruitPieces(oranges); // 12
+    const juice = `Juice is of ${applePieces} apples and ${orangePieces} oranges.`
+    return juice;
+}
+
+const val = fruitJuice(2,3);
+console.log(val);
+
+
+// Now..remeber..all these 3 types of funcitons , THEY work in similar way..recieve input data, transofrm data, then output data.
