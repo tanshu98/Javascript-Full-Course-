@@ -14,7 +14,21 @@ const restaurant = {
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]; // Baiscally if you wana access properties inside the methods we use..the 'this' keyword!
   },
-
+  // orderDelivery: function (obj) { // Before destructuring
+  //   console.log(obj);
+  // },
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = '20:00',
+    address,
+  }) {
+    // Default values
+    // After destructuring
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered at ${address} at ${time}`
+    );
+  },
   openingHours: {
     thu: {
       open: 12,
@@ -30,6 +44,18 @@ const restaurant = {
     },
   },
 };
+
+// Funciton call,
+restaurant.orderDelivery({
+  time: '22:30',
+  address: 'Pune, Maharashtra',
+  starterIndex: 2,
+  mainIndex: 2,
+});
+// SO many times in js we have functions with lot of parameters and then it cAN BE HARD  to know the order of these paramters for someone that is using this function. So instead of defining paramters manually,we can just pass an object into a function as an argument and then the function will immedialty destructure that object
+// So now we will be creating a new method called orderDelivery - Line 17,19
+// And then we are calling the function with options(obj parameters) - Line 38-43
+// Pls note we have just passed a single obj into the function and not 4 paramters..its just a single obj
 
 // Object Destructuring - We use curely braces
 // Here..we use property names for destructing..Also in objects..remember..oder of elemnts does not matter
@@ -62,7 +88,15 @@ let b = 121; // b = 578
 
 const obj = { a: 456, b: 578, c: 900 };
 
-console.log(obj);
-({a,b}) = obj;
-// Reliving letter..expirenece letter..
-// full and final settlement
+// // {a,b,c} = obj; - Js expects a code block after curly braces
+// ({ a, b, c } = obj); // So to solve this issue we wrap everything inside a parathesis
+// console.log(a, b, c);
+
+// Nested Objects -
+
+// const { fri } = openingHours;
+// console.log(fri);
+// const {
+//   fri: { open: o, close: c },
+// } = openingHours;
+// console.log(open, close);
