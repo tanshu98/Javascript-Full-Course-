@@ -47,7 +47,7 @@ const restaurant = {
 };
 // Logical Operators -
 
-console.log(1 || 'Tanshu'); // 1
+// console.log(1 || 'Tanshu'); // 1
 
 // Here there r 2 values that are not boolean..right!
 
@@ -56,54 +56,118 @@ console.log(1 || 'Tanshu'); // 1
 // Short ciruiting in OR Opertor -
 // - IN the case of OR operator, Shortciruiting means tht if the 1st value is a truthy value it will immedialty return that 1st value. And so if the 1st value is a truthy value..then the other operand will not even be evaluated..
 // SO hence it return 1 which is a truthy value
-console.log('' || 'Tanshu'); // Falsy vaue, Turthy value - Tanshu
-console.log(true || 0); // Note: '', 0, undefined, null, 0 are all falsy values
-console.log(undefined || null); // here it will return null becoz the 1st value is a falsy value..2nd is also a falsy value but js will just return null
+// console.log('' || 'Tanshu'); // Falsy vaue, Turthy value - Tanshu
+// console.log(true || 0); // Note: '', 0, undefined, null, 0 are all falsy values
+// console.log(undefined || null); // here it will return null becoz the 1st value is a falsy value..2nd is also a falsy value but js will just return null
 
-console.log(undefined || 0 || '' || 'Hello' || 23 || null); // Hello is returned
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null); // Hello is returned
 
-// Practical ex of Shortcircuiting -
+// // Practical ex of Shortcircuiting -
 
-restaurant.numGuests = 23;
-const guests1 = restaurant.numGuests ? restaurant : 10;
-// console.log(guests1);
+// restaurant.numGuests = 23;
+// const guests1 = restaurant.numGuests ? restaurant : 10;
+// // console.log(guests1);
 
-// What we are trying is to set default values uisng the ternary opertor!
-// Now we can actually make it much simpilar using the shortcircuiting method!
+// // What we are trying is to set default values uisng the ternary opertor!
+// // Now we can actually make it much simpilar using the shortcircuiting method!
 
-// Eg
+// // Eg
 
-const guests2 = restaurant.numGuests || 10;
-console.log(guests2);
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
 
-// Shortcicuiting in AND Operator -
-// AND Operator works in opp to OR operator
-// AND Operator short ciruits when the 1st value is falsy value and then it immedialty return the falsy vaue without evauationg the 2nd operand
-console.log('------AND-------');
+// // Shortcicuiting in AND Operator -
+// // AND Operator works in opp to OR operator
+// // AND Operator short ciruits when the 1st value is falsy value and then it immedialty return the falsy vaue without evauationg the 2nd operand
+// console.log('------AND-------');
 
-console.log(0 && 'Tanshu');
-// Here 0 is a falsy value..and So AND operator returns back 0;
-console.log(8 && 'Tanshu');
-// Here, 8 is a truthy value..hence the evaluation contiues and it retunrns the last value
+// console.log(0 && 'Tanshu');
+// // Here 0 is a falsy value..and So AND operator returns back 0;
+// console.log(8 && 'Tanshu');
+// // Here, 8 is a truthy value..hence the evaluation contiues and it retunrns the last value
 
-console.log('Hello' && 23 && null && 'Tanshu'); // null
+// console.log('Hello' && 23 && null && 'Tanshu'); // null
 
-// Practical Example -
+// // Practical Example -
 
-// write a code to check if a particular given method exists or not
+// // write a code to check if a particular given method exists or not
 
-if (restaurant.orderPizza) {
-  restaurant.orderPizza('Mushroom', 'Spinach');
-} // Normal code
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('Mushroom', 'Spinach');
+// } // Normal code
 
-// We can do the same by using short circuiting in And operator
+// // We can do the same by using short circuiting in And operator
 
-restaurant.orderPizza && restaurant.orderPizza('Mushroom', 'Spinach'); // Here,if the 1st value is false, then the entire operation will become false..and hence the function will then get called..
-// If its true the function will definatley get called
+// restaurant.orderPizza && restaurant.orderPizza('Mushroom', 'Spinach'); // Here,if the 1st value is false, then the entire operation will become false..and hence the function will then get called..
+// // If its true the function will definatley get called
 
-// Conclusion -
+// // Conclusion -
 
-// OR Operator - This will return the 1st truthy value of all the operands or simply the last value if all of them are falsy
-// AND Operator - This operator will return the 1st falsy value of all the operands or the last value if all of them are trurthy
+// // OR Operator - This will return the 1st truthy value of all the operands or simply the last value if all of them are falsy
+// // AND Operator - This operator will return the 1st falsy value of all the operands or the last value if all of them are trurthy
 
-// Practical Applications - We can use OR opertor to set default values and we can use the AND Operator to execute the code in the 2nd operand if the 1st value is true!
+// // Practical Applications - We can use OR opertor to set default values and we can use the AND Operator to execute the code in the 2nd operand if the 1st value is true!
+
+// Nullish Coelising Operator -
+
+// restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+
+console.log(guests);
+
+// Now here..numGuests is 0 and so its a falsy value and so it returns 10.
+
+// But, note the no of guests can also be 0..so here is a bug..
+
+// Now this we can solve using someting called as Nullish coalesing Operator
+
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect); // 0
+
+// So this operator basically works on the concept of nullish values instead of falsy values
+// Nullish values - Null, Undefined (Not 0 or '');
+// So here..only nullish values will shortcircuit the evaluation
+
+//The null coalescing operator (??) is a binary operator introduced in JavaScript that is used to return the first operand if it exists and is not null or undefined; otherwise, it returns the second operand.
+
+// NOw when..no of guests is 0, then when we use the ?? operator..it will return 0.. This is because the 1st operand has some value and that value is not a nullish value - null or undiefined and so ,,we get the 1st operand as the result
+// when no of guests = null, Here..we will it will continue its evaluation till the 2nd operand and hence will return the values of 2nd operand!
+
+// Logical Assingment Operators - ES2021
+
+const rest1 = {
+  name: 'Mama Ka Dhabha',
+  // numGuests: 20,
+  numGuests: 0,
+};
+
+const rest2 = {
+  name: 'Northen Blue Restaurent',
+  owner: 'Tanshu Allewar',
+};
+
+// We wanna add a logic to set a default value for numGuests prop in both the objects..Since rest2 doenst have a numGuests prop..so we wann do something obout it!
+
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+
+// OR Assignment Operator
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+// So this above code works perfectly when no of guests are not a falsy value..If they are a falsy value..lets say  0 which again is a perfect no of guests..Then we will have to use nullish assignment orperator
+
+// Nullish assignment orperator
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+// console.log(rest1, rest2);
+
+// rest1.owner = rest1.owner && '<ANONYMUS>';
+// rest2.owner = rest2.owner && '<ANONYMUS>';
+
+// And Assignment Operator
+
+rest1.owner &&= '<ANONYMUS>';
+rest2.owner &&= '<ANONYMUS>';
+console.log(rest1, rest2);
