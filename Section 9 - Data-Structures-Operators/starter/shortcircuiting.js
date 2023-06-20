@@ -113,7 +113,7 @@ const restaurant = {
 // restaurant.numGuests = 0;
 const guests = restaurant.numGuests || 10;
 
-console.log(guests);
+// console.log(guests);
 
 // Now here..numGuests is 0 and so its a falsy value and so it returns 10.
 
@@ -122,7 +122,7 @@ console.log(guests);
 // Now this we can solve using someting called as Nullish coalesing Operator
 
 const guestCorrect = restaurant.numGuests ?? 10;
-console.log(guestCorrect); // 0
+// console.log(guestCorrect); // 0
 
 // So this operator basically works on the concept of nullish values instead of falsy values
 // Nullish values - Null, Undefined (Not 0 or '');
@@ -170,4 +170,39 @@ rest2.numGuests ??= 10;
 
 rest1.owner &&= '<ANONYMUS>';
 rest2.owner &&= '<ANONYMUS>';
-console.log(rest1, rest2);
+// console.log(rest1, rest2);
+
+// For of Loop
+
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu]; // using spread operator
+// console.log(menu);
+
+// for (const item of menu) console.log(item);
+// In this loop..we dont have to put counters and variables..we can just directly loop through a set of data and then print them individually without worrying about this conditons..
+// Also we can use break and continue statements with this for-of loop;
+
+// So here we are currently printing the current element..
+// Now lets say we wanna print index values also along with current element..
+
+for (const item of menu.entries()) {
+  // console.log(item); // [ 0, 'Focaccia' ] , [ 1, 'Bruschetta' ] etc.
+  console.log(`${item[0] + 1}: ${item[1]}`);
+  console.log({ item });
+  console.log(item);
+}
+
+// console.log([...menu.entries()]);
+
+// SO baiscally menu.entries itself is an array and inside this array we have both item and indexes in seperate individual arrays..
+// i.e 1st index value will be the 1st array with the 1st value and so on..
+// And so using item of menu.entries() we are looping the item through all these individual arrays
+
+// SO in line 189, we have item which is looping through menu.entries(). So here.. in the item[0] we have the index number..ok.and then in the item[1] we have its value..
+
+// For better understanding print the output of line 192 in live server!
+
+// Now we can further enhance our code much better using the destructring operation..So basically we can perform destructoring in line 187 and 189
+
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
