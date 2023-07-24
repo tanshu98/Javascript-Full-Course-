@@ -1,3 +1,51 @@
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+  // ES6 enhanced object literals
+  openingHours,
+
+  order(starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
+
+  orderPasta(ing1, ing2, ing3) {
+    console.log(
+      `Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
+  },
+
+  orderPizza(mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
+};
+
 // Maps - A map is a datastructure that we can use to map values to keys
 // SO just like objects, data is stored in key - value pairs in Maps also..
 // In Objects, the keys are always strings
@@ -75,3 +123,62 @@ console.log(rest.get(arr)); //Test
 
 rest.set(document.querySelector('h1'), 'Heading');
 console.log(rest.get('h1'));
+
+// MAP ITERATIONS -
+
+// NOw there is another way of adding elements in the Maps..
+
+const question = new Map([
+  ['question', 'Which is the best Programing Language in the World?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct Ans 🎉'],
+  [false, 'Please try again!'],
+]);
+
+console.log(question);
+
+console.log(Object.entries(openingHours));
+
+// Convert object to Map
+
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+// So remeber..we use object.entries to get key and  values fromm the object..
+// If we only want..key..we use object.key(object_name) and if only value, object.value(object_name);
+
+// SO here the hoursMap is now a Map
+
+// Iteration in the Map..
+
+// Map is a iterable..And so since we have converted the object into map..we can directly loop using for loop..we dont have to use object.entries(object_name)..
+
+console.log(question.get('question'));
+
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key} : ${value}`);
+}
+
+// const answer = Number(prompt('Your Answer'));
+// console.log(answer);
+
+// answer === 3..true
+
+// console.log(question.get(question.get('correct') === answer));
+
+// ALternative Answers -
+
+// console.log(question.get(3 === answer));
+
+// Map to Array
+console.log(question);
+// console.log([...question]); // we are unpacking values inside an array..so map becomes an array!
+
+// We also have same properties as arrays in Maps too..
+
+// console.log([...question.entries()]);
+console.log(question);
+console.log([...question.values()]); // values
+console.log([...question.keys()]); // keys
