@@ -218,3 +218,40 @@ const captalization = function (name) {
 
 captalization('lets learn to captalize strings!');
 captalization('gambare gambare, you have got this!');
+
+// Padding a string - This means to add a number of characters to a stirng until the string has certain desired length
+
+const message = 'Go to gate 23!';
+console.log(message.padStart(20, '+').padEnd(30, '+'));
+console.log('tanshu'.padStart(20, '+').padEnd(30, '+'));
+
+// Application of Padding -
+
+// Create a function to mask numbers passed into the function...
+
+const maskCreditCard = function (number) {
+  const str = number + ''; // Converting number into string
+  // Note: Number added to a string becomes a stirng
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+// so basically, my string specifically was 16 digits and the last.padStart function added 12 more characters(*) to the 4 we already had in the last variable because as an argument in the pad function we specified that we wanted our output to be the length of the original string. so.. 12(*'s) + 4(amount of numbers stored the last variable) = 16...
+
+console.log(maskCreditCard(2345678));
+console.log(maskCreditCard(45689589558494));
+
+// So we wanna mask..all the digits upto last 4 digits..
+// So obv we will be using padStart..
+
+// Repeat : This allows us to repeat string multiple times
+
+const repeatString = 'This is just a repeat string! ';
+console.log(repeatString.repeat(5));
+
+const plnesInline = function (n) {
+  console.log(`There are ${n} of planes waiting in line ${'🛩'.repeat(n)}`);
+};
+
+plnesInline(5);
+plnesInline(10);
+plnesInline(7);
